@@ -1,7 +1,21 @@
 /* Напишем здесь анимации  */
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotation {
+  animation: rotation 5s linear infinite;
+}
 
 html {
   /* Пробросим высоту и объясним, зачем и как */
+  height: 100%;
 }
 
 .page {
@@ -24,7 +38,7 @@ html {
 
 /* Ширина для любых случаев */
 .header {
-
+  width: 100%;
 }
 
 
@@ -32,7 +46,14 @@ html {
 /* 95% ширины, растянем контент, 80px высоты, по центру */
 
 .header__wrapper {
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0 auto;
+  padding: 5px 0;
+  min-height: 80px;
+  box-sizing: border-box;
 }
 
 /* Белый текст */
@@ -40,18 +61,22 @@ html {
   color: #fff;
 }
 
+.header__logo-link {
+  color: currentColor;
+}
+
 .header__logo {
   height: 60px;
+  fill: currentColor;
 }
 
 /* Пояснить за наследование и закрасить svg белым*/
-.header_theme_dark .header__logo {
-
-}
+.header_theme_dark .header__logo {}
 
 .header__link {
   /* Ссылки не наследуют стили, сделать наследуемым цвет */
-
+  color: currentColor;
+  margin-left: 20px;
   font-size: 14px;
   text-decoration: none;
   /* Отступы между ссылками 20 */
@@ -61,24 +86,25 @@ html {
   text-decoration: underline;
 }
 
-.header__link:last-of-type {
+.header__link:first-of-type {
   /* Обнуление */
+  margin-left: 0;
 }
 
 /* Отнаследуем высоту от родителя и предположим позиционирование внутри*/
 .cover {
-
+  position: relative;
+  height: 100%;
 }
 
 /* Позиционируем абсолютно */
 .cover__header {
-
+  position: absolute;
+  z-index: 10;
 }
 
 /* Уточняем высоту для внутреннего блока 600px */
-.cover_type_inner {
-
-}
+.cover_type_inner {}
 
 /* Подгоним видео под блок */
 
@@ -86,17 +112,25 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: right;
+  display: block;
 }
 
 /* Полупрозрачный черный оверлэй поверх видео */
 .cover__overlay {
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
 }
 
 /* Отдельный модификатор "все по центру внутри оверлэя" */
 .cover__overlay_inner-content_centered {
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Текст и иконка выровнены по центру */
@@ -106,6 +140,8 @@ html {
   color: #fff;
   font-size: 80px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 
 .cover__decoration-letter {
@@ -125,12 +161,18 @@ html {
 
 .cover__border {
   width: 350px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
 /* Карточки с переносом */
 .card-list {
-
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 400px);
+  gap: 40px;
 }
 
 .card {
@@ -140,9 +182,11 @@ html {
 
 /* Маркеры налево и вверх на 10 и 12 соответственно */
 .card__marker {
-
   padding: 8px;
   box-shadow: 0 0 2px black;
+  position: absolute;
+  top: -10px;
+  left: -12px;
 }
 
 .card__marker_type_dead {
@@ -163,7 +207,9 @@ html {
 /* Подогнать картинки под всю ширину и 400 в высоту */
 
 .card__image {
-
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
 }
 
 .card__text {
@@ -174,24 +220,31 @@ html {
 
 /* Построить сетку на гридах, сстрока высоты 350, гэп 4 */
 .photo-grid {
-
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  grid-template-rows: repeat(3, 350px);
+  gap: 4px;
 }
 
 /* Подогнать картинки */
 .photo-grid__item {
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Область первого элемента */
 
 .photo-grid__item:first-of-type {
-
+  grid-row-start: 1;
+  grid-row-end: 4;
 }
 
 /* Область второго элемента */
 
 .photo-grid__item:nth-of-type(4) {
-
+  grid-column-start: 2;
+  grid-column-end: 4;
 }
 
 .footer {
